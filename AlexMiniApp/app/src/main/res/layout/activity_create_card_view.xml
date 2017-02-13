@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+                  android:id="@+id/activity_create_card_view"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:weightSum="1">
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Name of Activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtNameOfActivity"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+                android:textStyle="normal|bold"
+                android:textSize="24sp"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="Name"
+                android:ems="10"
+                android:layout_below="@+id/txtNameOfActivity"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:id="@+id/fldNameOfActivity"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="Desc"
+                android:ems="10"
+                android:layout_below="@+id/txtDescOfActivity"
+                android:layout_alignRight="@+id/fldNameOfActivity"
+                android:layout_alignEnd="@+id/fldNameOfActivity"
+                android:layout_marginTop="19dp"
+                android:id="@+id/fldDescOfActivity"/>
+
+            <DatePicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/datePicker"
+                android:layout_below="@+id/txtDateOfActivity"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"/>
+
+            <TextView
+                android:text="Description of Activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:id="@+id/txtDescOfActivity"
+                android:textAlignment="center"
+                android:layout_below="@+id/fldNameOfActivity"
+                android:layout_centerHorizontal="true"
+                android:textStyle="normal|bold"
+                android:textSize="24sp"/>
+
+            <TextView
+                android:text="Date of Activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:id="@+id/txtDateOfActivity"
+                android:textStyle="normal|bold"
+                android:textSize="24sp"
+                android:layout_below="@+id/fldDescOfActivity"
+                android:layout_alignRight="@+id/txtNameOfActivity"
+                android:layout_alignEnd="@+id/txtNameOfActivity"/>
+
+            <TextView
+                android:text="Time of Activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:id="@+id/txtTimeOfActivity"
+                android:textStyle="normal|bold"
+                android:textSize="24sp"
+                android:layout_below="@+id/datePicker"
+                android:layout_alignRight="@+id/txtNameOfActivity"
+                android:layout_alignEnd="@+id/txtNameOfActivity"/>
+
+            <TimePicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/timePicker"
+                android:layout_below="@id/txtTimeOfActivity"
+                android:layout_marginTop="24dp"/>
+
+
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>
