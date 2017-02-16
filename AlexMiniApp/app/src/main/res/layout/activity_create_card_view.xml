@@ -2,6 +2,7 @@
 
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
@@ -15,7 +16,7 @@
         <RelativeLayout
 
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="1616dp">
 
             <TextView
                 android:text="Name of Activity"
@@ -34,10 +35,20 @@
                 android:inputType="textPersonName"
                 android:text="Name"
                 android:ems="10"
+                android:id="@+id/fldNameOfActivity"
                 android:layout_below="@+id/txtNameOfActivity"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="12dp"
-                android:id="@+id/fldNameOfActivity"/>
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:text="Description of Activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtDescOfActivity"
+                android:textAlignment="center"
+                android:textStyle="normal|bold"
+                android:textSize="24sp"
+                android:layout_below="@+id/fldNameOfActivity"
+                android:layout_centerHorizontal="true"/>
 
             <EditText
                 android:layout_width="wrap_content"
@@ -45,63 +56,93 @@
                 android:inputType="textPersonName"
                 android:text="Desc"
                 android:ems="10"
+                android:layout_marginTop="6dp"
+                android:id="@+id/fldDescOfActivity"
                 android:layout_below="@+id/txtDescOfActivity"
-                android:layout_alignRight="@+id/fldNameOfActivity"
-                android:layout_alignEnd="@+id/fldNameOfActivity"
-                android:layout_marginTop="19dp"
-                android:id="@+id/fldDescOfActivity"/>
-
-            <DatePicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/datePicker"
-                android:layout_below="@+id/txtDateOfActivity"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="24dp"/>
-
-            <TextView
-                android:text="Description of Activity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:id="@+id/txtDescOfActivity"
-                android:textAlignment="center"
-                android:layout_below="@+id/fldNameOfActivity"
-                android:layout_centerHorizontal="true"
-                android:textStyle="normal|bold"
-                android:textSize="24sp"/>
+                android:layout_alignLeft="@+id/fldNameOfActivity"
+                android:layout_alignStart="@+id/fldNameOfActivity"/>
 
             <TextView
                 android:text="Date of Activity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:id="@+id/txtDateOfActivity"
                 android:textStyle="normal|bold"
                 android:textSize="24sp"
                 android:layout_below="@+id/fldDescOfActivity"
-                android:layout_alignRight="@+id/txtNameOfActivity"
-                android:layout_alignEnd="@+id/txtNameOfActivity"/>
+                android:layout_alignLeft="@+id/txtTimeOfActivity"
+                android:layout_alignStart="@+id/txtTimeOfActivity"/>
 
-            <TextView
-                android:text="Time of Activity"
+            <DatePicker
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:id="@+id/txtTimeOfActivity"
-                android:textStyle="normal|bold"
+                android:id="@+id/datePicker"
+                android:layout_marginTop="7dp"
+                android:layout_below="@+id/txtDateOfActivity"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:text=" Picture for Activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtPicOfActivity"
                 android:textSize="24sp"
-                android:layout_below="@+id/datePicker"
-                android:layout_alignRight="@+id/txtNameOfActivity"
-                android:layout_alignEnd="@+id/txtNameOfActivity"/>
+                android:textStyle="normal|bold"
+                android:textAlignment="center"
+                android:layout_below="@+id/timePicker"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="19dp"/>
 
             <TimePicker
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/timePicker"
-                android:layout_below="@id/txtTimeOfActivity"
-                android:layout_marginTop="24dp"/>
+                android:layout_below="@+id/txtTimeOfActivity"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="11dp"/>
 
+            <TextView
+                android:text="Time of Activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtTimeOfActivity"
+                android:textStyle="normal|bold"
+                android:textSize="24sp"
+                android:layout_below="@+id/datePicker"
+                android:layout_centerHorizontal="true"/>
+
+            <Button
+                android:text="[Select]"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnChosePic"
+                android:layout_below="@+id/txtPicOfActivity"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="13dp"
+                android:onClick="onClickPicSelect"/>
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                app:srcCompat="@mipmap/ic_launcher"
+                android:id="@+id/imgChosenPic"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/btnChosePic"
+                android:layout_centerHorizontal="true"/>
+
+            <Button
+                android:text="CREATE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:id="@+id/btnCreate"
+                android:textStyle="normal|bold"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:layout_below="@+id/imgChosenPic"
+                android:layout_centerHorizontal="true"
+                android:onClick="onCreateNewActivity"/>
 
         </RelativeLayout>
     </LinearLayout>

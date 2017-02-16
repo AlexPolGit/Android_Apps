@@ -1,7 +1,7 @@
 package com.alexpol.alexminiapp;
 
 import android.content.Intent;
-import android.graphics.Picture;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,51 +14,71 @@ import java.util.Date;
 
 public class CardView extends AppCompatActivity
 {
-
-     private RecyclerView mRecyclerView;
-     private RecyclerView.Adapter mAdapter;
-     private RecyclerView.LayoutManager mLayoutManager;
-     private static String LOG_TAG = "CardViewActivity";
+     private Intent intentMain;
+     private RecyclerView recyclerView;
+     private RecyclerView.Adapter adapter;
+     private RecyclerView.LayoutManager layoutManager;
+     private static String LOG_TAG = "alexLogMsg";
 
      @Override
      protected void onCreate(Bundle savedInstanceState)
      {
           super.onCreate(savedInstanceState);
+          if (RecyclerViewAdapter.eventList == null)
+          {
+               RecyclerViewAdapter.eventList = new ArrayList<CardData>();
+          }
           setContentView(R.layout.activity_card_view);
 
-          mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-          mRecyclerView.setHasFixedSize(true);
-          mLayoutManager = new LinearLayoutManager(this);
-          mRecyclerView.setLayoutManager(mLayoutManager);
-          mAdapter = new RecyclerViewAdapter(generateTestDataSet());
-          mRecyclerView.setAdapter(mAdapter);
+          Log.i(LOG_TAG, "CREATED: CardView");
+
+          intentMain = new Intent(CardView.this , TestMainScreen.class);
+
+          recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+          recyclerView.setHasFixedSize(false);
+          layoutManager = new LinearLayoutManager(this);
+          recyclerView.setLayoutManager(layoutManager);
+          adapter = new RecyclerViewAdapter(new ArrayList<CardData>());
+          recyclerView.setAdapter(adapter);
      }
 
      @Override
      protected void onResume()
      {
+          Log.i(LOG_TAG, "RESUMED: CardView");
+          //Log.i(LOG_TAG, "Events list has " + RecyclerViewAdapter.eventList.size() + " items!");
           super.onResume();
-          ((RecyclerViewAdapter) mAdapter).setOnItemClickListener(new RecyclerViewAdapter.clickListener()
+          
+          ((RecyclerViewAdapter) adapter).setOnItemClickListener(new RecyclerViewAdapter.clickListener()
           {
                @Override
                public void onItemClick(int position, View v)
                {
-                    Log.i(LOG_TAG, " Clicked on Item " + position);
+                    Log.i(LOG_TAG, "Clicked on Item " + position);
                }
           });
+     }
+/*
+     @Override
+     protected void onPause()
+     {
+          super.onPause();
+          Log.i(LOG_TAG, "PAUSED: CardView");
      }
 
      @Override
      public void onBackPressed()
      {
-          Intent intentMain = new Intent(CardView.this , TestMainScreen.class);
           CardView.this.startActivity(intentMain);
      }
-
-     private ArrayList<CardData> generateTestDataSet()
+*/
+     protected void addEvent(CardData cardData)
      {
-          ArrayList results = new ArrayList<CardData>();
+          RecyclerViewAdapter.eventList.add(cardData);
+     }
 
+     private void generateTestDataSet()
+     {
           char[] emotes = {'A', 'B', 'C', 'D', 'E'};
 
           Date testDate = new Date();
@@ -66,17 +86,9 @@ public class CardView extends AppCompatActivity
 
           Location testLocation = new Location("Ring Road", 1, "Waterloo", "ON", "Canada");
 
-          Picture testPicture = new Picture();
+          Bitmap testPicture = null;
 
           CardData obj = new CardData("Event Name", "Event Desc", testDate, testLocation, testPicture, emotes);
-          results.add(0, obj);
-          results.add(1, obj);
-          results.add(2, obj);
-          results.add(3, obj);
-          results.add(4, obj);
-          results.add(5, obj);
-          results.add(6, obj);
-
-          return results;
+          RecyclerViewAdapter.eventList.add(obj);
      }
 }

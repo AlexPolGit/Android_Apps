@@ -1,18 +1,20 @@
 package com.alexpol.alexminiapp;
 
-import android.graphics.Picture;
+import android.graphics.Bitmap;
 import java.util.Date;
 
 public class CardData
 {
+     private static String LOG_TAG = "alexLogMsg";
+
      private String activityName;
      private String activityDescription;
      private Date activityDate;
      private Location activityLocation;
-     private Picture activityPicture;
+     private Bitmap activityPicture;
      private String activityEmojis;
 
-     public CardData(String name, String desc, Date date, Location location, Picture image, char[] emojis)
+     public CardData(String name, String desc, Date date, Location location, Bitmap image, char[] emojis)
      {
           activityName = name;
           activityDescription = desc;
@@ -46,5 +48,10 @@ public class CardData
      public String getActivityEmojis()
      {
           return activityEmojis;
+     }
+
+     public Bitmap getActivityPicture()
+     {
+          return activityPicture;
      }
 }

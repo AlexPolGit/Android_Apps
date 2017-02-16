@@ -8,14 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.CardDataHolder>
 {
-     private static String LOG_TAG = "MyRecyclerViewAdapter";
-     private ArrayList<CardData> cardSet;
+     private static String LOG_TAG = "alexLogMsg";
+     public static ArrayList<CardData> eventList;
      private static clickListener clickListener;
 
      public static class CardDataHolder extends RecyclerView.ViewHolder implements View.OnClickListener
@@ -30,6 +28,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
           public CardDataHolder(View itemView)
           {
                super(itemView);
+               //Log.i(LOG_TAG, "Events list has " + eventList.size() + " items!");
                eventName = (TextView) itemView.findViewById(R.id.eventTitle);
                eventLocation = (TextView) itemView.findViewById(R.id.eventLocation);
                eventTime = (TextView) itemView.findViewById(R.id.eventTime);
@@ -43,9 +42,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
           }
 
           @Override
-          public void onClick(View v)
+          public void onClick(View view)
           {
-               clickListener.onItemClick(getAdapterPosition(), v);
+               clickListener.onItemClick(getAdapterPosition(), view);
           }
      }
 
@@ -54,9 +53,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
           this.clickListener = clickListener;
      }
 
-     public RecyclerViewAdapter(ArrayList<CardData> myDataset)
+     public RecyclerViewAdapter(ArrayList<CardData> dataset)
      {
-          cardSet = myDataset;
+
      }
 
      @Override
@@ -71,13 +70,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
      @Override
      public void onBindViewHolder(CardDataHolder holder, int position)
      {
-          holder.eventName.setText(cardSet.get(position).getActivityName());
-          holder.eventLocation.setText(cardSet.get(position).getActivityLocation());
-          holder.eventTime.setText(cardSet.get(position).getActivityDate());
-          holder.eventEmojis.setText(cardSet.get(position).getActivityEmojis());
-          holder.eventPicture.setImageResource(R.drawable.cat);
+          holder.eventName.setText(eventList.get(position).getActivityName());
+          holder.eventLocation.setText(eventList.get(position).getActivityLocation());
+          holder.eventTime.setText(eventList.get(position).getActivityDate());
+          holder.eventEmojis.setText(eventList.get(position).getActivityEmojis());
+          holder.eventPicture.setImageBitmap(eventList.get(position).getActivityPicture());
 
-          if(position == cardSet.size() - 1)
+          if(position == eventList.size() - 1)
           {
                holder.endText.setTextSize(16.0f);
           }
@@ -85,24 +84,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
      public void addItem(CardData data, int index)
      {
-          cardSet.add(index, data);
+          eventList.add(index, data);
           notifyItemInserted(index);
      }
 
      public void deleteItem(int index)
      {
-          cardSet.remove(index);
+          eventList.remove(index);
           notifyItemRemoved(index);
      }
 
      @Override
      public int getItemCount()
      {
-          return cardSet.size();
+          return eventList.size();
      }
 
      public interface clickListener
      {
-          public void onItemClick(int position, View v);
+          void onItemClick(int position, View view);
      }
 }
